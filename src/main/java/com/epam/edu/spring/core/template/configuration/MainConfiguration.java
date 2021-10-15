@@ -19,10 +19,11 @@ import java.util.Random;
 @Import({RepositoryConfiguration.class, InitializerConfiguration.class})
 @PropertySource("classpath:application.properties")
 public class MainConfiguration {
-    @Autowired
-    @Qualifier("getRepository")
-    public ItemRepository repository;
     @Resource
+    @Autowired
+    @Qualifier("repository")
+    public ItemRepository repository;
+
     public ColorFactory colorFactory;
     @Resource
     public ItemValidator validator;

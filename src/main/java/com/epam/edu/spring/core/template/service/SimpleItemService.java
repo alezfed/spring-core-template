@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Service
+@Service(value = "service")
 public class SimpleItemService implements ItemService {
     private final Random random = new Random();
     private ItemRepository itemRepository;
@@ -19,7 +19,7 @@ public class SimpleItemService implements ItemService {
     private ColorFactory colorFactory;
 
     @Autowired
-    public SimpleItemService(@Qualifier("getRepository") ItemRepository itemRepository, ItemValidator itemValidator, ColorFactory colorFactory) {
+    public SimpleItemService(@Qualifier("repository") ItemRepository itemRepository, ItemValidator itemValidator, ColorFactory colorFactory) {
         this.itemRepository = itemRepository;
         this.itemValidator = itemValidator;
         this.colorFactory = colorFactory;
@@ -47,7 +47,7 @@ public class SimpleItemService implements ItemService {
     }
 
     @Autowired
-    public void setItemRepository(@Qualifier("getRepository") ItemRepository itemRepository) {
+    public void setItemRepository(@Qualifier("repository") ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 

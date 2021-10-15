@@ -33,7 +33,7 @@ public class RepositoryConfiguration {
         }
     }
 
-    @Bean(name = "getRepository")
+    @Bean(name = "repository")
     public ItemRepository getRepository() {
         return repository;
     }

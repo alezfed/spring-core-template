@@ -3,7 +3,7 @@ package com.epam.edu.spring.core.template.validator;
 import com.epam.edu.spring.core.template.entity.Item;
 import org.springframework.stereotype.Controller;
 
-@Controller
+@Controller(value = "validator")
 public class SimpleItemValidator implements ItemValidator {
 
     public SimpleItemValidator() {
