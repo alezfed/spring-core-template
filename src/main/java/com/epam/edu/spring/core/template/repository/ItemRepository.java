@@ -7,5 +7,4 @@ public interface ItemRepository {
     Item getById(long id);
 
     boolean createItem(Item item);
-
 }
