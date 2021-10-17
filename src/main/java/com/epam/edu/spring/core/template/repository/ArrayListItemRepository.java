@@ -3,12 +3,10 @@ package com.epam.edu.spring.core.template.repository;
 import com.epam.edu.spring.core.template.entity.Item;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
-@Repository
 @ToString
 public class ArrayListItemRepository extends AbstractRepository<Item> implements ItemRepository {
     private ArrayList<Item> items;

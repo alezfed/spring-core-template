@@ -3,11 +3,9 @@ package com.epam.edu.spring.core.template.configuration;
 import com.epam.edu.spring.core.template.entity.Color;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
 @NoArgsConstructor
 public class ColorFactory implements FactoryBean<Color> {
     @Override

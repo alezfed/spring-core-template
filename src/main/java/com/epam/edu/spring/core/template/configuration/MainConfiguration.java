@@ -1,5 +1,6 @@
 package com.epam.edu.spring.core.template.configuration;
 
+import com.epam.edu.spring.core.template.entity.Color;
 import com.epam.edu.spring.core.template.entity.Item;
 import com.epam.edu.spring.core.template.repository.ItemRepository;
 import com.epam.edu.spring.core.template.service.ItemService;
@@ -15,20 +16,18 @@ import javax.annotation.Resource;
 import java.util.Random;
 
 @Configuration
-@ComponentScan
 @Import({RepositoryConfiguration.class, InitializerConfiguration.class})
 @PropertySource("classpath:application.properties")
 public class MainConfiguration {
-    @Resource
     @Autowired
     @Qualifier("repository")
-    public ItemRepository repository;
-
-    public ColorFactory colorFactory;
-    @Resource
-    public ItemValidator validator;
-    @Resource
-    public ItemService service;
+    private ItemRepository repository;
+    @Autowired
+    private ItemValidator validator;
+    @Autowired
+    private ItemService service;
+    @Autowired
+    private ColorFactory colorFactory;
 
     @Bean
     public ItemValidator getValidator() {
@@ -36,7 +35,7 @@ public class MainConfiguration {
     }
 
     @Bean
-    public ItemService getService() {
+    public ItemService getService(ItemRepository repository, ItemValidator validator, ColorFactory colorFactory) {
         return new SimpleItemService(repository, validator, colorFactory);
     }
 
@@ -44,7 +43,7 @@ public class MainConfiguration {
     public void addRandomNewItemsInRepository() {
         int countNewItem = new Random().nextInt(2) + 10;
         for (int i = 0; i < countNewItem; i++) {
-            service.createItem(new Item());
+            getService(repository, validator, colorFactory).createItem(new Item());
         }
     }
 }

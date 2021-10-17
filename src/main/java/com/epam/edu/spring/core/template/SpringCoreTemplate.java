@@ -5,8 +5,6 @@ import com.epam.edu.spring.core.template.repository.ItemRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.sound.midi.Soundbank;
-
 public class SpringCoreTemplate {
 
     public static void main(String[] args) {
