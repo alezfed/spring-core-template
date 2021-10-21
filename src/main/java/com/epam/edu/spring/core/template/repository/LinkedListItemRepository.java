@@ -1,11 +1,11 @@
 package com.epam.edu.spring.core.template.repository;
 
+import com.epam.edu.spring.core.template.configuration.InjectRandomInt;
 import com.epam.edu.spring.core.template.entity.Item;
 import lombok.ToString;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedList;
-import java.util.Random;
 
 @ToString
 public class LinkedListItemRepository extends AbstractRepository<Item> implements ItemRepository {
@@ -25,8 +25,9 @@ public class LinkedListItemRepository extends AbstractRepository<Item> implement
     }
 
     @Override
+    @InjectRandomInt(min = 1, max = 100)
     void setInitialSequence(int val) {
-        this.initialSequence = new Random().nextInt(100) + 1;
+        this.initialSequence = val;
     }
 
     @PostConstruct

@@ -13,21 +13,34 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-        <springframework.version>5.2.1.RELEASE</springframework.version>
+        <spring.context.version>5.2.1.RELEASE</spring.context.version>
         <lombok.version>1.18.22</lombok.version>
+        <reflections.version>0.9.11</reflections.version>
+        <spring.test.version>5.3.10</spring.test.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring.context.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.test.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

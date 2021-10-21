@@ -2,11 +2,15 @@ package com.epam.edu.spring.core.template.configuration;
 
 import com.epam.edu.spring.core.template.entity.Color;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.Random;
 
 @NoArgsConstructor
+@ToString
+@Lazy
 public class ColorFactory implements FactoryBean<Color> {
     @Override
     public Color getObject() throws Exception {

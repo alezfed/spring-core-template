@@ -1,13 +1,12 @@
 package com.epam.edu.spring.core.template.validator;
 
 import com.epam.edu.spring.core.template.entity.Item;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@NoArgsConstructor
+@ToString
 public class SimpleItemValidator implements ItemValidator {
-
-    @Autowired
-    public SimpleItemValidator() {
-    }
 
     @Override
     public boolean isItemValid(Item item) {

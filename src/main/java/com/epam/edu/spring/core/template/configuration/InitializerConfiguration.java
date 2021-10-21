@@ -1,12 +1,12 @@
 package com.epam.edu.spring.core.template.configuration;
 
 import com.epam.edu.spring.core.template.entity.Color;
+import com.epam.edu.spring.core.template.validator.ItemValidator;
+import com.epam.edu.spring.core.template.validator.SimpleItemValidator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
-@Configuration
 public class InitializerConfiguration {
     @Bean
     @Lazy
@@ -18,6 +18,17 @@ public class InitializerConfiguration {
     @Lazy
     @Scope("prototype")
     public Color getColor() throws Exception {
-        return getColorFactory().getObject();
+        return new ColorFactory().getObject();
+    }
+
+    @Bean
+    @Lazy
+    public ItemValidator getValidator() {
+        return new SimpleItemValidator();
+    }
+
+    @Bean
+    public InjectRandomIntAnnotationBeanPostProcessor getInjectRandomPostProcessor() {
+        return new InjectRandomIntAnnotationBeanPostProcessor();
     }
 }

@@ -5,25 +5,19 @@ import com.epam.edu.spring.core.template.entity.Color;
 import com.epam.edu.spring.core.template.entity.Item;
 import com.epam.edu.spring.core.template.repository.ItemRepository;
 import com.epam.edu.spring.core.template.validator.ItemValidator;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Service(value = "service")
+@ToString
+@AllArgsConstructor
 public class SimpleItemService implements ItemService {
     private final Random random = new Random();
     private ItemRepository itemRepository;
     private ItemValidator itemValidator;
     private ColorFactory colorFactory;
-
-    @Autowired
-    public SimpleItemService(@Qualifier("repository") ItemRepository itemRepository, ItemValidator itemValidator, ColorFactory colorFactory) {
-        this.itemRepository = itemRepository;
-        this.itemValidator = itemValidator;
-        this.colorFactory = colorFactory;
-    }
 
     @Override
     public Item getById(long id) {
@@ -36,7 +30,7 @@ public class SimpleItemService implements ItemService {
             try {
                 Color color = colorFactory.getObject();
                 item.setColor(color);
-                item.setName("It is name of " + color.toString());
+                item.setName("It is name of " + color.toString().toLowerCase());
                 item.setPrice(random.nextInt(500) + 200);
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -47,7 +41,7 @@ public class SimpleItemService implements ItemService {
     }
 
     @Autowired
-    public void setItemRepository(@Qualifier("repository") ItemRepository itemRepository) {
+    public void setItemRepository(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
