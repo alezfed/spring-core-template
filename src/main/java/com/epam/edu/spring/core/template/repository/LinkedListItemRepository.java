@@ -1,28 +1,37 @@
 package com.epam.edu.spring.core.template.repository;
 
+import com.epam.edu.spring.core.template.configuration.InjectRandomInt;
 import com.epam.edu.spring.core.template.entity.Item;
+import lombok.ToString;
 
-/**
- * Репозиторий, основанный на классе LinkedList.
- * initialSequence должен случайно генерироваться из диапазона от 1 до 100
- */
+import javax.annotation.PostConstruct;
+import java.util.LinkedList;
+
+@ToString
 public class LinkedListItemRepository extends AbstractRepository<Item> implements ItemRepository {
+    private LinkedList<Item> items;
 
     @Override
     public Item getById(long id) {
-        return null;
+        return items.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
     @Override
     public boolean createItem(Item item) {
-        return false;
+        item.setId(initialSequence);
+        items.add(item);
+        initialSequence++;
+        return true;
     }
 
+    @Override
+    @InjectRandomInt(min = 1, max = 100)
     void setInitialSequence(int val) {
-        //TODO
+        this.initialSequence = val;
     }
 
+    @PostConstruct
     void setHolder() {
-        //TODO
+        items = new LinkedList<>();
     }
 }

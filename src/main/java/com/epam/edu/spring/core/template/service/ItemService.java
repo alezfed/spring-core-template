@@ -7,5 +7,4 @@ public interface ItemService {
     Item getById(long id);
 
     boolean createItem(Item item);
-
 }

@@ -1,28 +1,37 @@
 package com.epam.edu.spring.core.template.repository;
 
 import com.epam.edu.spring.core.template.entity.Item;
+import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
 
-/**
- * Репозиторий, основанный на классе ArrayList.
- * initialSequence должен браться из application.properties
- */
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+
+@ToString
 public class ArrayListItemRepository extends AbstractRepository<Item> implements ItemRepository {
+    private ArrayList<Item> items;
 
     @Override
     public Item getById(long id) {
-        return null;
+        return items.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
     @Override
     public boolean createItem(Item item) {
-        return false;
+        item.setId(initialSequence);
+        items.add(item);
+        initialSequence++;
+        return true;
     }
 
+    @Override
+    @Value("${initial.sequence}")
     void setInitialSequence(int val) {
-        //TODO
+        this.initialSequence = val;
     }
 
+    @PostConstruct
     void setHolder() {
-        //TODO
+        items = new ArrayList<>();
     }
 }
