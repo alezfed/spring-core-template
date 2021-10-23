@@ -5,7 +5,6 @@ import com.epam.edu.spring.core.template.repository.ItemRepository;
 import com.epam.edu.spring.core.template.service.ItemService;
 import com.epam.edu.spring.core.template.service.SimpleItemService;
 import com.epam.edu.spring.core.template.validator.ItemValidator;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 
@@ -15,7 +14,6 @@ import java.util.Random;
 @Configuration
 @Import({RepositoryConfiguration.class, InitializerConfiguration.class})
 @PropertySource("classpath:application.properties")
-@ToString
 public class MainConfiguration {
     @Autowired
     private ItemRepository repository;
@@ -24,6 +22,8 @@ public class MainConfiguration {
     @Autowired
     @Lazy
     private ColorFactory colorFactory;
+    @Autowired
+    private ItemService service;
 
     @Bean
     public ItemService getService() {
@@ -34,7 +34,7 @@ public class MainConfiguration {
     public void addRandomNewItemsInRepository() {
         int countNewItem = new Random().nextInt(2) + 10;
         for (int i = 0; i < countNewItem; i++) {
-            getService().createItem(new Item());
+            service.createItem(new Item());
         }
     }
 }

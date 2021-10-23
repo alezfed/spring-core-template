@@ -2,6 +2,7 @@ package com.epam.edu.spring.core.template;
 
 import com.epam.edu.spring.core.template.configuration.ColorFactory;
 import com.epam.edu.spring.core.template.configuration.MainConfiguration;
+import com.epam.edu.spring.core.template.entity.Color;
 import com.epam.edu.spring.core.template.repository.ItemRepository;
 import com.epam.edu.spring.core.template.service.ItemService;
 import com.epam.edu.spring.core.template.service.SimpleItemService;
@@ -18,5 +19,6 @@ public class SpringCoreTemplate {
         ItemValidator validator = context.getBean(ItemValidator.class);
         ColorFactory factory = context.getBean(ColorFactory.class);
         ItemService service = context.getBean(SimpleItemService.class);
+        Color color = context.getBean(Color.class);
     }
 }

@@ -22,4 +22,9 @@ public class ColorFactory implements FactoryBean<Color> {
     public Class<?> getObjectType() {
         return Color.class;
     }
+
+    @Override
+    public boolean isSingleton() {
+        return false;
+    }
 }

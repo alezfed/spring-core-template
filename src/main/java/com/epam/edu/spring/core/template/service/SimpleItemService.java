@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 @ToString
@@ -33,7 +34,7 @@ public class SimpleItemService implements ItemService {
                 item.setName("It is name of " + color.toString().toLowerCase());
                 item.setPrice(random.nextInt(500) + 200);
             } catch (Exception exception) {
-                exception.printStackTrace();
+                throw new NoSuchElementException("An error occurred while a new item adds in the service.");
             }
             return itemRepository.createItem(item);
         }
